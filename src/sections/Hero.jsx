@@ -31,7 +31,7 @@ const Hero = () => {
         </div>
       </div>
       <div className= "relative flex-1 flex justify-center items-center xl:min-h-screen max-xl:py-10 bg-primary bg-hero bg-cover bg-center">
-        <img className="object-contain relative z-10" src={bigShoeImg} width={370} height={270} alt="" />
+        <img className="object-contain relative z-10 " src={bigShoeImg} width={370} height={270} alt=""/>
         <div className="flex sm:gap-4 gap-3 absolute -bottom-[5%] sm:left-[10%] max-sm:px-6">
           {shoes.map((shoe) => (
             <div key={shoe}>

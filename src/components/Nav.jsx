@@ -5,6 +5,7 @@ import { navLinks } from '../constant';
 
 const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Function to handle scroll event
   useEffect(() => {
@@ -25,6 +26,11 @@ const Nav = () => {
     };
   }, []);
 
+  // Function to toggle menu visibility
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <header className={`fixed top-0 left-0 z-20 w-full transition-colors duration-300 ${isScrolled ? 'bg-white/90 shadow-md backdrop-blur-md' : 'bg-transparent'}`}>
       <nav className="flex justify-between items-center max-container padding-x py-4">
@@ -44,9 +50,30 @@ const Nav = () => {
           ))}
         </ul>
         <div className="hidden max-lg:block">
-          <img src={hamburger} alt="Menu" width={25} height={25} />
+          <img
+            src={hamburger}
+            alt="Menu"
+            width={25}
+            height={25}
+            onClick={handleMenuToggle}
+            className="cursor-pointer"
+          />
         </div>
       </nav>
+      {isMenuOpen && (
+        <ul className="flex flex-col items-center bg-white shadow-md py-4 max-lg:block lg:hidden">
+          {navLinks.map((item) => (
+            <li key={item.label} className="py-2">
+              <a
+                href={item.href}
+                className="font-montserrat leading-normal text-lg text-slate-gray"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </header>
   );
 };
